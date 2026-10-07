@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>دعوة عقد قران | أحمد ومنه</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Noto+Kufi+Arabic:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --wine: #351512;
+      --wine2: #5d241e;
+      --gold: #d7b467;
+      --paper: #f5eddf;
+      --ink: #3a211b;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      width: 100%;
+      min-height: 100%;
+      background: #160807;
+    }
+
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      background: #160807;
+      color: var(--paper);
+      font-family: "Noto Kufi Arabic", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .scene {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+      min-height: 100dvh;
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: radial-gradient(circle at 50% 35%, #6c3029 0, #351512 40%, #160807 100%);
+      isolation: isolate;
+    }
+
+    .scene:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: .35;
+      background-image: radial-gradient(rgba(255, 255, 255, .15) .6px, transparent .7px);
+      background-size: 5px 5px;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .cover {
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      height: 100dvh;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      transition: opacity .7s, transform .7s;
+      pointer-events: auto;
+    }
+
+    .envelope {
+      width: min(90vw, 650px);
+      aspect-ratio: 1.55;
+      position: relative;
+      cursor: pointer;
+      filter: drop-shadow(0 35px 28px #090202);
+      perspective: 1300px;
+    }
+
+    .body {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(221, 181, 102, .4);
+      background: linear-gradient(135deg, #5e2822, #35120f 58%, #4d1d19);
+      overflow: hidden;
+    }
+
+    .body:before,
+    .body:after {
+      content: "";
+      position: absolute;
+      top: 45%;
+      width: 76%;
+      height: 110%;
+      border: 1px solid rgba(202, 157, 87, .23);
+      background: linear-gradient(135deg, transparent 52%, rgba(19, 4, 3, .36));
+      transform: rotate(37deg);
+    }
+
+    .body:before {
+      left: -38%
+    }
+
+    .body:after {
+      right: -38%;
+      transform: rotate(-37deg)
+    }
+
+    .flap {
+      position: absolute;
+      z-index: 4;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: min(45vw, 325px) solid transparent;
+      border-right: min(45vw, 325px) solid transparent;
+      border-top: min(30vw, 210px) solid #532019;
+      transform-origin: top;
+      filter: drop-shadow(0 2px 0 #1c0605);
+      transition: transform 1.05s cubic-bezier(.55, 0, .1, 1);
+    }
+
+    .flap:after {
+      content: "";
+      position: absolute;
+      top: calc(-1 * min(27vw, 185px));
+      left: calc(-1 * min(18vw, 128px));
+      width: min(36vw, 256px);
+      height: min(28vw, 185px);
+      border: 1px solid rgba(220, 180, 100, .19);
+      border-radius: 50% 50% 42% 42%;
+      transform: rotate(45deg);
+    }
+
+    .crest {
+      position: absolute;
+      z-index: 5;
+      left: 50%;
+      top: 50%;
+      translate: -50% -50%;
+      width: 170px;
+      height: 120px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-family: Amiri, serif;
+      font-size: 39px;
+      text-shadow: 0 2px 4px #1b0504;
+    }
+
+    .crest:before,
+    .crest:after {
+      content: "❧";
+      position: absolute;
+      font-size: 82px;
+      top: 5px;
+    }
+
+    .crest:before {
+      right: -4px;
+      transform: rotate(-12deg)
+    }
+
+    .crest:after {
+      left: -4px;
+      transform: scaleX(-1) rotate(-12deg)
+    }
+
+    .crest span {
+      z-index: 1
+    }
+
+    .crest .latin {
+      direction: ltr;
+      font-family: "Great Vibes", cursive;
+      font-size: 48px;
+      letter-spacing: -.05em;
+    }
+
+    .tap {
+      position: absolute;
+      bottom: max(18px, calc(env(safe-area-inset-bottom) + 10px));
+      color: #e9cc90;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 19px;
+      letter-spacing: .13em;
+      animation: pulse 1.8s infinite;
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+      z-index: 1
+    }
+
+    .envelope.open .crest {
+      opacity: 0;
+      transition: .25s
+    }
+
+    .scene.revealed .cover {
+      opacity: 0;
+      transform: scale(1.08);
+      pointer-events: none;
+    }
+
+    .invite {
+      width: min(100%, 850px);
+      min-height: 100vh;
+      min-height: 100svh;
+      min-height: 100dvh;
+      position: relative;
+      z-index: 2;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity .8s .5s, transform .8s .5s;
+      background: linear-gradient(rgba(44, 15, 13, .91), rgba(19, 5, 4, .97)), radial-gradient(circle at 50% 0, #7c382d, transparent 52%);
+    }
+
+    .scene.revealed .invite {
+      opacity: 1;
+      transform: none;
+    }
+
+    .inner {
+      width: min(92%, 650px);
+      margin: 0 auto;
+      padding: clamp(42px, 7vh, 60px) 20px max(54px, calc(env(safe-area-inset-bottom) + 40px));
+      text-align: center;
+    }
+
+    .ornament {
+      color: var(--gold);
+      font-size: 50px;
+      line-height: .6
+    }
+
+    .eyebrow {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: .23em;
+      font-size: 13px;
+      color: #e6c785;
+      margin: 30px 0 14px;
+    }
+
+    .bismillah {
+      font-family: Amiri, serif;
+      color: #e4cb98;
+      font-size: 28px;
+      margin: 0;
+    }
+
+    .monogram {
+      direction: ltr;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: clamp(8px, 2vw, 22px);
+      max-width: 510px;
+      margin: 34px auto 10px;
+      color: #f7ead0;
+      text-shadow: 0 2px 16px #120302;
+    }
+
+    .monogram .initial {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(92px, 21vw, 165px);
+      font-weight: 600;
+      line-height: 1;
+      color: #f5dfab;
+      text-transform: uppercase;
+      font-variant: normal;
+      font-style: normal;
+      display: inline-block;
+    }
+
+    .monogram .heart {
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(38px, 7vw, 58px);
+      line-height: 1;
+    }
+
+    .arabic-mark {
+      font-family: "Aref Ruqaa Ink", Amiri, serif;
+      font-size: clamp(32px, 7vw, 51px);
+      font-weight: 700;
+      line-height: 1;
+      color: #efcd85;
+      margin: 0 0 18px;
+      letter-spacing: -.08em;
+    }
+
+    .arabic-mark span {
+      display: inline-block;
+      transform: translateX(2px)
+    }
+
+    .intro {
+      line-height: 2.2;
+      font-size: 13px;
+      color: #eadbc4;
+      max-width: 500px;
+      margin: 0 auto 35px;
+    }
+
+    .divider {
+      height: 1px;
+      width: 70px;
+      background: var(--gold);
+      margin: 22px auto
+    }
+
+    .count-label {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: .2em;
+      color: #e4c079;
+      font-size: 13px;
+    }
+
+    .count {
+      display: flex;
+      justify-content: center;
+      gap: clamp(4px, 2vw, 10px);
+      direction: ltr;
+      margin: 13px 0 32px;
+      flex-wrap: nowrap;
+    }
+
+    .box {
+      width: clamp(54px, 16vw, 68px);
+      min-width: 0;
+      padding: 10px 2px;
+      border: 1px solid rgba(218, 181, 107, .55);
+      background: rgba(255, 241, 209, .055);
+    }
+
+    .box b {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(28px, 8vw, 34px);
+      font-weight: 500;
+      color: #f5dfaf;
+    }
+
+    .box small {
+      font-size: 8px;
+      color: #d7c3a4;
+      direction: rtl;
+    }
+
+    .details {
+      border-top: 1px solid rgba(218, 181, 107, .55);
+      border-bottom: 1px solid rgba(218, 181, 107, .55);
+      padding: 20px 8px;
+      margin: 0 auto;
+      color: #eedfca;
+    }
+
+    .details strong {
+      display: block;
+      font-family: Amiri, serif;
+      font-size: clamp(24px, 7vw, 29px);
+      color: #f3d797;
+      overflow-wrap: anywhere;
+    }
+
+    .details span {
+      font-size: 11px;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .when {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 19px;
+      letter-spacing: .1em;
+      margin: 20px 0 6px;
+      color: #efdcae;
+    }
+
+    .when small {
+      font-family: "Noto Kufi Arabic";
+      font-size: 10px;
+      letter-spacing: 0;
+      color: #dcc8a8;
+    }
+
+    .actions {
+      display: flex;
+      gap: 9px;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      padding-bottom: 4px;
+    }
+
+    button {
+      font-family: "Noto Kufi Arabic";
+      font-size: 10px;
+      min-height: 44px;
+      padding: 12px 17px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: #f3dcab;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    button:first-child {
+      background: var(--gold);
+      color: #351512
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: .45;
+        translate: 0 5px
+      }
+    }
+
+    @media (max-width:480px) {
+      .crest {
+        scale: .75
+      }
+
+      .tap {
+        bottom: max(14px, calc(env(safe-area-inset-bottom) + 8px));
+        font-size: 17px;
+      }
+
+      .inner {
+        width: min(94%, 650px);
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: .14em;
+        margin-top: 26px;
+      }
+
+      .bismillah {
+        font-size: 24px
+      }
+
+      .monogram {
+        margin-top: 30px;
+        gap: 8px
+      }
+
+      .monogram .initial {
+        font-size: clamp(84px, 25vw, 115px);
+        line-height: 1;
+      }
+
+      .arabic-mark {
+        font-size: clamp(31px, 10vw, 43px);
+        margin-bottom: 16px
+      }
+
+      .intro {
+        font-size: 12px;
+        line-height: 2;
+        margin-bottom: 28px;
+      }
+
+      .count {
+        margin-bottom: 28px
+      }
+
+      .box {
+        padding: 9px 1px
+      }
+
+      .actions {
+        width: 100%;
+        gap: 8px;
+      }
+
+      button {
+        flex: 1 1 140px;
+        width: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+    @media (max-width:360px) {
+      .inner {
+        padding-left: 10px;
+        padding-right: 10px
+      }
+
+      .ornament {
+        font-size: 42px
+      }
+
+      .bismillah {
+        font-size: 21px
+      }
+
+      .monogram .initial {
+        font-size: 80px;
+        line-height: 1;
+      }
+
+      .arabic-mark {
+        font-size: 31px
+      }
+
+      .count {
+        gap: 3px
+      }
+
+      .box {
+        width: calc((100vw - 38px)/4)
+      }
+
+      .box b {
+        font-size: 27px
+      }
+
+      .box small {
+        font-size: 7px
+      }
+
+      .when {
+        font-size: 16px
+      }
+
+      .when small {
+        font-size: 9px
+      }
+
+      button {
+        flex-basis: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      *,
+      *:before,
+      *:after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="scene" id="scene">
+    <section class="cover">
+      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="اضغط لفتح الدعوة">
+        <div class="body"></div>
+        <div class="flap"></div>
+        <div class="crest"><span class="latin">A,&nbsp;M</span></div>
+      </div>
+      <div class="tap">اضغط لفتح الدعوة</div>
+    </section>
+    <section class="invite">
+      <div class="inner">
+        <div class="ornament">❧</div>
+        <p class="eyebrow">TOGETHER WITH THEIR FAMILIES</p>
+        <p class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</p>
+        <div class="monogram" aria-label="A, M"><span class="initial">A</span><span class="heart">,</span><span
+            class="initial">M</span></div>
+        <p class="intro">بكل الحب والفرح، يتشرّفان بدعوتكم لمشاركتهما فرحة عقد قرانهما وبداية أجمل حكاية.</p>
+        <div class="divider"></div>
+        <p class="count-label">COUNT DOWN</p>
+        <div class="count">
+          <div class="box"><b id="d">00</b><small>يوم</small></div>
+          <div class="box"><b id="h">00</b><small>ساعة</small></div>
+          <div class="box"><b id="m">00</b><small>دقيقة</small></div>
+          <div class="box"><b id="s">00</b><small>ثانية</small></div>
+        </div>
+        <div class="details"><strong>مسجد مجمع بدر</strong><span>عقب صلاة العشاء مباشرة بالمسجد</span></div>
+        <p class="when">FRIDAY · 23 OCTOBER 2026<br><small>الجمعة ٢٣ أكتوبر ٢٠٢٦</small></p>
+        <div class="actions"><button onclick="map()">موقع المسجد</button><button onclick="share()">مشاركة
+            الدعوة</button></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const scene = document.getElementById('scene'), env = document.getElementById('envelope'); function openInvite() { env.classList.add('open'); setTimeout(() => scene.classList.add('revealed'), 650) } env.onclick = openInvite; env.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openInvite() } };
+    const target = new Date('2026-10-23T20:00:00+03:00'); function tick() { let x = Math.max(0, target - Date.now()), v = [Math.floor(x / 864e5), Math.floor(x / 36e5) % 24, Math.floor(x / 6e4) % 60, Math.floor(x / 1e3) % 60];['d', 'h', 'm', 's'].forEach((id, i) => document.getElementById(id).textContent = String(v[i]).padStart(2, '0')) } tick(); setInterval(tick, 1000);
+    function map() { open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('مسجد مجمع بدر'), '_blank', 'noopener') } function share() { const text = 'يسعدنا دعوتكم لحضور عقد قران أحمد ومنه، الجمعة ٢٣ أكتوبر ٢٠٢٦، في مسجد مجمع بدر عقب صلاة العشاء مباشرة.'; navigator.share ? navigator.share({ title: 'دعوة عقد قران أحمد ومنه', text, url: location.href }) : navigator.clipboard.writeText(location.href).then(() => alert('تم نسخ رابط الدعوة')) }
+  </script>
+</body>
+
+</html>
